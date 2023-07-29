@@ -21,25 +21,23 @@
 // think for Tablet)
 // ● We recommend to use MUI for styling.
 
-import { useState } from 'react'
 import './App.css'
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import Copyright from './components/atoms/Copyright'
+import TwoColumnLayout from './layouts/TwoColumnLayout';
 
-function App() {
-
-  return (
-    <Container maxWidth="sm">
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Material UI Vite.js example
-        </Typography>
-        <Copyright />
-      </Box>
-    </Container>
-  )
+function FirstColumnContent() {
+  // Content of the first column goes here
+  return <div>First Column Content</div>;
 }
 
-export default App
+function SecondColumnContent() {
+  // Content of the second column goes here
+  return <div>Second Column Content</div>;
+}
+
+function App() {
+  return (
+    <TwoColumnLayout firstColumn={<FirstColumnContent />} secondColumn={<SecondColumnContent />} />
+  );
+}
+
+export default App;
