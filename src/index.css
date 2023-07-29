@@ -14,7 +14,7 @@
   -webkit-text-size-adjust: 100%;
 }
 // give a background color to the body #273244
- body {
+body {
   background-color: #242424;
   margin: 0;
   padding: 0;
@@ -27,4 +27,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
- }
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
