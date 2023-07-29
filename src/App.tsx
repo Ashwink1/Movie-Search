@@ -22,18 +22,13 @@
 // ● We recommend to use MUI for styling.
 
 import './App.css'
+import MainPanel from './components/organism/MainPannel';
 import SidePanel from './components/organism/SidePannel';
 import TwoColumnLayout from './layouts/TwoColumnLayout';
 
-
-function SecondColumnContent() {
-  // Content of the second column goes here
-  return <div>Second Column Content</div>;
-}
-
 function App() {
   return (
-    <TwoColumnLayout firstColumn={<SidePanel />} secondColumn={<SecondColumnContent />} />
+    <TwoColumnLayout firstColumn={<SidePanel />} secondColumn={<MainPanel />} />
   );
 }
 

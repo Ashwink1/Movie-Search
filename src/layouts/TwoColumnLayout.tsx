@@ -31,8 +31,8 @@ const TwoColumnLayout: React.FC<TwoColumnLayoutProps> = ({ firstColumn, secondCo
       )}
       {/* First column */}
       {isFirstColumnVisible && (
-        <Grid item xs={12} md={3} style={{ position: isDesktop ? 'absolute' : 'static' }}>
-          <Paper style={{ width: 275, height: '100vh', backgroundColor: '#1F2A3C' }}>
+        <Grid item xs={12} md={3} style={{ position: !isDesktop ? 'absolute' : 'static' }}>
+          <Paper style={{ width: '100%', height: '100vh', backgroundColor: '#1F2A3C' }}>
             {firstColumn}
           </Paper>
         </Grid>

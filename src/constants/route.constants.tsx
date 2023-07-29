@@ -22,6 +22,17 @@ export const routes = {
     logout: '/logout',
 };
 
+const routesList = [
+    { path: '/discover', label: 'Discover', component: () => <div>Discover Page</div>, exact: true },
+    { path: '/playlist', label: 'Playlist', component: () => <div>Playlist Page</div>, exact: true },
+    { path: '/movies', label: 'Movie TV Shows', component: () => <div>Movie TV Shows Page</div>, exact: true },
+    { path: '/mylist', label: 'My List', component: () => <div>My List Page</div>, exact: true },
+    { path: '/watchlater', label: 'Watch Later', component: () => <div>Watch Later Page</div>, exact: true },
+    { path: '/recommended', label: 'Recommended', component: () => <div>Recommended Page</div>, exact: true },
+    { path: '/settings', label: 'Settings', component: () => <div>Settings Page</div>, exact: true },
+    { path: '/logout', label: 'Logout', component: () => <div>Logout Page</div>, exact: true },
+  ];
+
 // Define your tabs and their corresponding routes
 export const tabs = [
     { label: 'Discover', icon: discoverIcon, route: routes.discover },
