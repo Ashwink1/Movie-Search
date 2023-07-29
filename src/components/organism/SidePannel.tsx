@@ -3,7 +3,8 @@ import { Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import reactLogo from '../../assets/profile-image.png';
-import { Home, PlaylistPlay, Favorite, WatchLater, Settings, ExitToApp } from '@mui/icons-material';
+import useRouteChecker from '../../hooks/useRouteChecker';
+import {tabs, additionalLinks, settingsLinks} from '../../constants/route.constants';
 
 // Custom styled line for separating sections
 const Separator = styled('line')({
@@ -12,10 +13,12 @@ const Separator = styled('line')({
 });
 
 function SidePanel(): JSX.Element {
+    const { checkRouteContains } = useRouteChecker();
+
     return (
-        <Grid container direction="column" alignItems="center">
+        <Grid container direction="column" alignItems="center" justifyContent={'start'}>
             {/* Section 1 */}
-            <div className='p-10'>
+            <div className='p-10 w-full'>
                 <Grid item xs={12} className='flex justify-center items-center pb-2'>
                     <div className="rounded-full overflow-hidden">
                         <img
@@ -32,64 +35,28 @@ function SidePanel(): JSX.Element {
                 </Grid>
             </div>
 
-            {/* Separator Line 1 */}
-            <svg height="1" width="100%">
-                <Separator x1="0" y1="0" x2="100%" y2="0" />
-            </svg>
-
-            {/* Section 2 */}
-            <Grid item xs={12} className='py-4'>
-                <Link to="/discover" className="flex items-center px-2 text-gray-400 hover:text-blue-500">
-                    <Home className="mr-2" />
-                    Discover
-                </Link>
-                <Link to="/playlist" className="flex items-center px-2 text-gray-400 hover:text-blue-500">
-                    <PlaylistPlay className="mr-2" />
-                    Playlist
-                </Link>
-                <Link to="/movies" className="flex items-center px-2 text-gray-400 hover:text-blue-500">
-                    <Favorite className="mr-2" />
-                    Movie TV Shows
-                </Link>
-                <Link to="/mylist" className="flex items-center px-2 text-gray-400 hover:text-blue-500">
-                    <PlaylistPlay className="mr-2" />
-                    My List
-                </Link>
-            </Grid>
-
-            {/* Separator Line 2 */}
-            <svg height="1" width="100%">
-                <Separator x1="0" y1="0" x2="100%" y2="0" />
-            </svg>
-
-            {/* Section 3 */}
-            <Grid item xs={12} className='py-4'>
-                <Link to="/watchlater" className="flex items-center px-2 text-gray-400 hover:text-blue-500">
-                    <WatchLater className="mr-2" />
-                    Watch Later
-                </Link>
-                <Link to="/recommended" className="flex items-center px-2 text-gray-400 hover:text-blue-500">
-                    <Favorite className="mr-2" />
-                    Recommended
-                </Link>
-            </Grid>
-
-            {/* Separator Line */}
-            <svg height="1" width="100%">
-                <Separator x1="0" y1="0" x2="100%" y2="0" />
-            </svg>
-
-            {/* Section 4 */}
-            <Grid item xs={12} className='py-4'>
-                <Link to="/settings" className="flex items-center px-2 text-gray-400 hover:text-blue-500">
-                    <Settings className="mr-2" />
-                    Settings
-                </Link>
-                <Link to="/logout" className="flex items-center px-2 text-gray-400 hover:text-blue-500">
-                    <ExitToApp className="mr-2" />
-                    Logout
-                </Link>
-            </Grid>
+            {/* Sections */}
+            {[tabs, additionalLinks, settingsLinks].map((sectionLinks, index) => (
+                <div key={index}>
+                    <div className='flex justify-start items-start flex-col pl-[52px] py-2 w-full'>
+                        {sectionLinks.map((link) => (
+                            <Link
+                                key={link.route}
+                                to={link.route}
+                                className={`flex items-center py-3 text-gray-400 hover:text-blue-500 ${checkRouteContains(link.route) ? 'text-blue-500' : ''
+                                    }`}
+                            >
+                                {link.icon}
+                                <span className="mr-2">{link.label}</span>
+                            </Link>
+                        ))}
+                    </div>
+                    {/* Separators */}
+                    <svg key={index} height="1" width="100%">
+                        <Separator x1="0" y1="0" x2="100%" y2="0" />
+                    </svg>
+                </div>
+            ))}
         </Grid>
     );
 }
