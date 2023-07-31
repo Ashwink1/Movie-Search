@@ -27,12 +27,12 @@ function MainPanel() {
   }, [searchString]);
 
   return (
-    <Grid container direction="column" alignItems="start" justifyContent={'start'}>
+    <Grid container direction="column" alignItems="start" justifyContent={'start'} className={'h-full'} >
       {/* Search box */}
       <div className='px-[48px] py-[41px]'>
         <SearchBox handleCallBack={handleCallBack} />
       </div>
-      <div className='w-full'>
+      <div className='w-full h-[calc(100%-136px)] overflow-auto px-[48px] pb-[41px] flex flex-wrap'>
         {
           data.map((movie) => {
             return (<CardTypeMinView
